@@ -1,0 +1,19 @@
+#loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #ffffff;
+    cursor:progress;
+}
+.help-block {
+    margin-left: 40px;
+}
+.panel-title {
+    text-transform: uppercase;
+}
+.page-container .page-content {
+    min-height: 100vh !important;
+}
