@@ -24,12 +24,6 @@ class EmployeeController extends Controller
     }
 
 
-    public function index()
-    {
-        //
-    }
-
-
     public function create()
     {
         if (Auth::user()->can('employee_create')) {
@@ -56,7 +50,7 @@ class EmployeeController extends Controller
     {
         if (Auth::user()->can('employee_create')) {
             $request->validate([
-                'branch' => 'required',
+//                'branch' => 'required',
                 'email' => 'required',
                 'designation' => 'required',
                 'role' => 'required',
@@ -96,7 +90,7 @@ class EmployeeController extends Controller
                     $u = new User;
                     $u->password = bcrypt($request->password);
                 }
-                $u->branch_id = $request->branch;
+                $u->branch_id = Auth::user()->branch_id;
                 $u->name = $request->name;
                 $u->email = $request->email;
                 $u->job_id = $request->designation;
@@ -186,11 +180,6 @@ class EmployeeController extends Controller
         }
     }
 
-
-    public function show(Employee $employee)
-    {
-        //
-    }
 
 
     public function edit()

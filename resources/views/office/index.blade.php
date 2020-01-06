@@ -32,16 +32,16 @@
                           method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Footer Text</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                        <input type="text" value="{{ $office ? $office->footer : "" }}"
-                                               name="footerText" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label class="col-md-3 col-xs-12 control-label">Footer Text</label>--}}
+{{--                                <div class="col-md-6 col-xs-12">--}}
+{{--                                    <div class="input-group">--}}
+{{--                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>--}}
+{{--                                        <input type="text" value="{{ $office ? $office->footer : "" }}"--}}
+{{--                                               name="footerText" class="form-control">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label class="col-md-3 col-xs-12 control-label">Logo</label>
                                 <div class="col-md-6 col-xs-12">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Job;
+use App\Menu;
+use App\Office;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,6 +24,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        Storage::disk('local')->put('menu', Menu::all());
+        Storage::disk('local')->put('office', Office::where('branch_id', Auth::user()->branch_id)->first());
         if (Auth::user()->job_id && Job::find(Auth::user()->job_id)){
             Storage::disk('local')->put('job_title', Job::find(Auth::user()->job_id)->title);
         } else {

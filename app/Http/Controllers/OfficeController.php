@@ -20,7 +20,7 @@ class OfficeController extends Controller
     public function index()
     {
         if (Auth::user()->can('office_setup')){
-            $office = Office::find(1);
+            $office = Office::where('branch_id', Auth::user()->branch_id)->first();
             return view('office.index', compact('office'));
         } else {
             abort(403);
@@ -33,9 +33,10 @@ class OfficeController extends Controller
         if (Auth::user()->can('office_setup')){
             DB::beginTransaction();
             try {
-                $os = Office::find(1);
+                $os = Office::where('branch_id', Auth::user()->branch_id)->first();
                 if (!$os){
                     $os = new Office;
+                    $os->branch_id = Auth::user()->branch_id;
                 }
                 if ($request->filled('footerText')) {
                     $os->footer = $request->footerText;
@@ -62,7 +63,7 @@ class OfficeController extends Controller
             }
             if ($success) {
                 Storage::disk('local')->delete('office');
-                Storage::disk('local')->put('office', Office::find(1));
+                Storage::disk('local')->put('office', Office::where('branch_id', Auth::user()->branch_id)->first());
                 Session::flash('OfficeUpdateSuccess', "The Office Setup has been updated successfully.");
                 return redirect()->back();
             } else {
@@ -76,32 +77,4 @@ class OfficeController extends Controller
 
 
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function show(Office $office)
-    {
-        //
-    }
-
-
-    public function edit(Office $office)
-    {
-        //
-    }
-
-
-    public function update(Request $request, Office $office)
-    {
-        //
-    }
-
-
-    public function destroy(Office $office)
-    {
-        //
-    }
 }
