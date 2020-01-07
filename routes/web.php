@@ -300,7 +300,9 @@ Route::get('/ajax/manager/department_store', 'TaskController3@departmentStore');
 Route::post('/ajax/manager/task_store', 'TaskController3@taskStore')->name('task.store');
 Route::get('/Tasks-Management/Tak-details/{tid}', 'TaskController3@taskDetail')->name('task.detail');
 Route::post('/Tasks-Management/Tak-details/{tid}/update', 'TaskController3@taskDetailUpdate')->name('task.detail.update');
-
+Route::get('/Tasks-Management/Tak-details/{tid}/submit-file-download', 'TaskController3@downloadTaskFile')->name('downloadTaskFile');
+Route::get('/task-accept-2/{tid}', 'TaskController3@taskAccept')->name('task.accept2');
+Route::get('/task-reopen-2/{tid}', 'TaskController3@taskReopen')->name('task.reopen2');
 
 
 

@@ -15,7 +15,7 @@ class DemouserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|unique:users,email|unique:applicants,email',
+            'Email' => 'required|unique:users,email|unique:applicants,email',
             'password' => 'required|confirmed',
             'name' => 'required',
         ]);
@@ -23,12 +23,12 @@ class DemouserController extends Controller
         try {
             // create branch with same name
             $b = new Branch;
-            $b->title = $request->email;
+            $b->title = $request->Email;
             $b->save();
             // create demo user
             $u = new User;
             $u->name = $request->name;
-            $u->email = $request->email;
+            $u->email = $request->Email;
             $u->password = bcrypt($request->password);
             $u->branch_id = $b->id;
             $u->save();

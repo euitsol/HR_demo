@@ -79,20 +79,20 @@
                                     <small class="help-block">Duplicate entry is not allowed*</small>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Branch</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <select class="form-control" name="branch" required>
-                                        <option selected disabled hidden value="">Choose...</option>
-                                        @foreach($bs as $b)
-                                            <option value="{{$b->id}}" {{(old('branch')== $b->id)?'selected':'' }}>{{$b->title}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('branch'))
-                                        <span class="help-block text-danger">{{$errors->first('branch')}}</span>
-                                    @endif
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label class="col-md-3 col-xs-12 control-label">Branch</label>--}}
+{{--                                <div class="col-md-6 col-xs-12">--}}
+{{--                                    <select class="form-control" name="branch" required>--}}
+{{--                                        <option selected disabled hidden value="">Choose...</option>--}}
+{{--                                        @foreach($bs as $b)--}}
+{{--                                            <option value="{{$b->id}}" {{(old('branch')== $b->id)?'selected':'' }}>{{$b->title}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    @if($errors->has('branch'))--}}
+{{--                                        <span class="help-block text-danger">{{$errors->first('branch')}}</span>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label class="col-md-3 col-xs-12 control-label">Designation</label>
                                 <div class="col-md-6 col-xs-12">

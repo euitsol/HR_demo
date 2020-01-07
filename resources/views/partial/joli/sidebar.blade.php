@@ -80,11 +80,11 @@
                 <li><a href="{{route('role')}}"><i class="glyphicon glyphicon-minus"></i> {{$menu[3]->display_name}}
                     </a></li>
                 @endpermission
-                @permission('menu')
-                <li><a href="{{route('menu.setup')}}"><i
-                                class="glyphicon glyphicon-minus"></i> {{$menu[4]->display_name}}
-                    </a></li>
-                @endpermission
+{{--                @permission('menu')--}}
+{{--                <li><a href="{{route('menu.setup')}}"><i--}}
+{{--                                class="glyphicon glyphicon-minus"></i> {{$menu[4]->display_name}}--}}
+{{--                    </a></li>--}}
+{{--                @endpermission--}}
                 @permission('user_create')
                 <li><a href="{{route('users')}}"><i class="glyphicon glyphicon-minus"></i> {{$menu[5]->display_name}}
                     </a>
@@ -103,20 +103,20 @@
                 <li><a href="{{route('office.setup')}}"><i
                                 class="glyphicon glyphicon-minus"></i> {{$menu[7]->display_name}}</a></li>
                 @endpermission
-                @permission('branch_setup')
-                <li><a href="{{route('branch.setup')}}"><i
-                                class="glyphicon glyphicon-minus"></i> {{$menu[8]->display_name}}
-                    </a></li>
-                @endpermission
+{{--                @permission('branch_setup')--}}
+{{--                <li><a href="{{route('branch.setup')}}"><i--}}
+{{--                                class="glyphicon glyphicon-minus"></i> {{$menu[8]->display_name}}--}}
+{{--                    </a></li>--}}
+{{--                @endpermission--}}
                 @permission('pay_scale')
                 <li><a href="{{route('payScale')}}"><i class="glyphicon glyphicon-minus"></i> {{$menu[9]->display_name}}
                     </a></li>
                 @endpermission
-                @permission('tax')
-                <li><a href="{{route('tax.setup')}}"><i
-                                class="glyphicon glyphicon-minus"></i> {{$menu[10]->display_name}}</a>
-                </li>
-                @endpermission
+{{--                @permission('tax')--}}
+{{--                <li><a href="{{route('tax.setup')}}"><i--}}
+{{--                                class="glyphicon glyphicon-minus"></i> {{$menu[10]->display_name}}</a>--}}
+{{--                </li>--}}
+{{--                @endpermission--}}
                 @permission('designation')
                 <li><a href="{{route('designation')}}"><i
                                 class="glyphicon glyphicon-minus"></i> {{$menu[11]->display_name}}</a>
@@ -127,16 +127,16 @@
                                 class="glyphicon glyphicon-minus"></i> {{$menu[12]->display_name}}</a>
                 </li>
                 @endpermission
-                @permission('general')
-                <li><a href="{{route('general.setup')}}"><i
-                                class="glyphicon glyphicon-minus"></i> {{$menu[13]->display_name}}</a>
-                </li>
-                @endpermission
-                @permission('religion')
-                <li><a href="{{route('religion')}}"><i
-                                class="glyphicon glyphicon-minus"></i> {{$menu[14]->display_name}}</a>
-                </li>
-                @endpermission
+{{--                @permission('general')--}}
+{{--                <li><a href="{{route('general.setup')}}"><i--}}
+{{--                                class="glyphicon glyphicon-minus"></i> {{$menu[13]->display_name}}</a>--}}
+{{--                </li>--}}
+{{--                @endpermission--}}
+{{--                @permission('religion')--}}
+{{--                <li><a href="{{route('religion')}}"><i--}}
+{{--                                class="glyphicon glyphicon-minus"></i> {{$menu[14]->display_name}}</a>--}}
+{{--                </li>--}}
+{{--                @endpermission--}}
                 @permission('leave')
                 <li><a href="{{route('leave.setup')}}"><i
                                 class="glyphicon glyphicon-minus"></i> {{$menu[15]->display_name}}</a>
@@ -173,39 +173,39 @@
                                 class="glyphicon glyphicon-minus"></i> {{$menu[21]->display_name}}</a></li>
                 {{--Old Increment--}}
                 {{--Its Not Coming From $m--}}
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-sitemap"></span> <span
-                                class="xn-text"> Increment Old</span></a>
-                    <ul>
-                        <li><a href="{{route('increment.persons.select')}}"><i class="glyphicon glyphicon-minus"></i>
-                                Department Head</a>
-                        </li>
-                        <li><a href="{{route('increment.show.hr')}}"><i class="glyphicon glyphicon-minus"></i> HR</a>
-                        </li>
-                        <li><a href="{{route('increment.show.ceo')}}"><i class="glyphicon glyphicon-minus"></i> CEO</a>
-                        </li>
-                    </ul>
-                </li>
+{{--                <li class="xn-openable">--}}
+{{--                    <a href="#"><span class="fa fa-sitemap"></span> <span--}}
+{{--                                class="xn-text"> Increment Old</span></a>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="{{route('increment.persons.select')}}"><i class="glyphicon glyphicon-minus"></i>--}}
+{{--                                Department Head</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="{{route('increment.show.hr')}}"><i class="glyphicon glyphicon-minus"></i> HR</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="{{route('increment.show.ceo')}}"><i class="glyphicon glyphicon-minus"></i> CEO</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
                 @endpermission
                 @permission('account_close')
                 <li><a href="{{route('account.close')}}"><i class="glyphicon glyphicon-minus"></i>
                         [[{{$menu[22]->display_name}}]]</a></li>
                 @endpermission
-                @permission('transfer')
-                <li class="xn-openable">
-                    <a href="#"><span class="fa fa-sitemap"></span> <span
-                                class="xn-text"> {{$menu[23]->display_name}}</span></a>
-                    <ul>
-                        <li><a href="{{route('transfer.release')}}"><i
-                                        class="glyphicon glyphicon-minus"></i> {{$menu[24]->display_name}}</a>
-                        </li>
-                        <li><a href="{{route('transfer.join')}}"><i
-                                        class="glyphicon glyphicon-minus"></i> {{$menu[25]->display_name}}
-                            </a></li>
-                        {{--                        <li><a href="{{route('test')}}"><span class="fa fa-download"></span> Test</a></li>--}}
-                    </ul>
-                </li>
-                @endpermission
+{{--                @permission('transfer')--}}
+{{--                <li class="xn-openable">--}}
+{{--                    <a href="#"><span class="fa fa-sitemap"></span> <span--}}
+{{--                                class="xn-text"> {{$menu[23]->display_name}}</span></a>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="{{route('transfer.release')}}"><i--}}
+{{--                                        class="glyphicon glyphicon-minus"></i> {{$menu[24]->display_name}}</a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="{{route('transfer.join')}}"><i--}}
+{{--                                        class="glyphicon glyphicon-minus"></i> {{$menu[25]->display_name}}--}}
+{{--                            </a></li>--}}
+{{--                        --}}{{--                        <li><a href="{{route('test')}}"><span class="fa fa-download"></span> Test</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                @endpermission--}}
             </ul>
         </li>
         @endpermission
@@ -359,34 +359,34 @@
                 </ul>
             </li>
         @endif
-        <li class="xn-title">Old</li>
-        <li class="xn-openable">
-            <a href="#"><span class="fa fa-info"></span> <span
-                        class="xn-text"> Info</span></a>
-            <ul>
-                <li><a href="{{route('userinfosearch')}}"><span
-                                class="fa fa-info"></span> User Info</a></li>
-                <li><a href="{{route('userJobInfoSearch')}}"><span
-                                class="fa fa-info"></span> User Job Info</a></li>
-                <li><a href="{{route('userPayInfoSearch')}}"><span
-                                class="fa fa-info"></span> [[User Pay Info]]</a></li>
-                <li><a href="{{route('userLoanInfoSearch')}}"><span
-                                class="fa fa-info"></span> User Loan Info</a></li>
-                <li><a href="{{route('user.search.role')}}"><span
-                                class="fa fa-info"></span> User Role</a></li>
-            </ul>
-        </li>
-        <li class="xn-openable">
-            <a href="#"><span class="glyphicon glyphicon-calendar"></span> <span
-                        class="xn-text"> Task Management</span></a>
-            <ul>
-                <li><a href="{{route('task.index')}}"><i class="glyphicon glyphicon-minus"></i> Project Manager</a></li>
-                <li><a href="{{route('task.index.employee')}}"><i class="glyphicon glyphicon-minus"></i> Employee</a>
-                </li>
-            </ul>
-        </li>
+{{--        <li class="xn-title">Old</li>--}}
+{{--        <li class="xn-openable">--}}
+{{--            <a href="#"><span class="fa fa-info"></span> <span--}}
+{{--                        class="xn-text"> Info</span></a>--}}
+{{--            <ul>--}}
+{{--                <li><a href="{{route('userinfosearch')}}"><span--}}
+{{--                                class="fa fa-info"></span> User Info</a></li>--}}
+{{--                <li><a href="{{route('userJobInfoSearch')}}"><span--}}
+{{--                                class="fa fa-info"></span> User Job Info</a></li>--}}
+{{--                <li><a href="{{route('userPayInfoSearch')}}"><span--}}
+{{--                                class="fa fa-info"></span> [[User Pay Info]]</a></li>--}}
+{{--                <li><a href="{{route('userLoanInfoSearch')}}"><span--}}
+{{--                                class="fa fa-info"></span> User Loan Info</a></li>--}}
+{{--                <li><a href="{{route('user.search.role')}}"><span--}}
+{{--                                class="fa fa-info"></span> User Role</a></li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
+{{--        <li class="xn-openable">--}}
+{{--            <a href="#"><span class="glyphicon glyphicon-calendar"></span> <span--}}
+{{--                        class="xn-text"> Task Management</span></a>--}}
+{{--            <ul>--}}
+{{--                <li><a href="{{route('task.index')}}"><i class="glyphicon glyphicon-minus"></i> Project Manager</a></li>--}}
+{{--                <li><a href="{{route('task.index.employee')}}"><i class="glyphicon glyphicon-minus"></i> Employee</a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
 
-
+{{--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--}}
         {{--        <li class="xn-title">Navigation</li>--}}
         {{--        <li>--}}
         {{--            <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>--}}

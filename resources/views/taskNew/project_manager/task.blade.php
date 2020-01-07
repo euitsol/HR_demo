@@ -1,16 +1,17 @@
 @extends('layouts.joli')
-@section('title', 'Loan Type')
+@section('title', 'Task Details')
 @section('breadcrumb')
     @php
         $menuU = Storage::disk('local')->get('menu');
         $menu = json_decode($menuU);
     @endphp
     <ul class="breadcrumb">
-        <li>{{$menu[33]->display_name}}</li>
-        <li class="active">{{$menu[38]->display_name}}</li>
+        <li>{{$menu[51]->display_name}}</li>
+        <li><a href="{{route('task.project.manager')}}">{{$menu[52]->display_name}}</a></li>
+        <li class="active">Task Details</li>
     </ul>
 @endsection
-@section('pageTitle', 'Loan Type')
+@section('pageTitle', 'Task Details')
 @section('content')
     <div class="row mb-5">
         @if(session('success'))
@@ -22,7 +23,7 @@
                 {{session('unsuccess')}}
             </div>
         @endif
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Task Detail</h3>
@@ -62,7 +63,7 @@
                             <label class="col-md-3 col-xs-12 control-label">Remark</label>
                             <div class="col-md-6 col-xs-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                    {{--                                    <span class="input-group-addon"><span class="fa fa-calendar"></span></span>--}}
                                     <textarea class="form-control {{$errors->has('remark') ? 'is-invalid' : ''}}"
                                               rows="5" name="remark" required>{{$task->remark}}</textarea>
                                 </div>
@@ -104,35 +105,81 @@
                                         </div>
                                     </div>
                                 </select>
-
                             </div>
                         </div>
-
-
                         {{--      Task Priority          --}}
-
-
+                        {{--                        @if(count($tasks) > 1)--}}
+                        {{--                            <div class="form-group">--}}
+                        {{--                                <label class="col-md-3 col-xs-12 control-label">More Important Task</label>--}}
+                        {{--                                <div class="col-md-6 col-xs-12">--}}
+                        {{--                                    <div class="custom-control custom-checkbox mr-sm-2" style="margin-top: 5px;">--}}
+                        {{--                                        @foreach($tasks as $t)--}}
+                        {{--                                            @if($t->id != $task->id)--}}
+                        {{--                                                <input type="checkbox" class="custom-control-input" id="{{$t->title}}">--}}
+                        {{--                                                <label class="custom-control-label"--}}
+                        {{--                                                       for="{{$t->title}}">{{$t->title}}</label>--}}
+                        {{--                                                <br>--}}
+                        {{--                                            @endif--}}
+                        {{--                                        @endforeach--}}
+                        {{--                                    </div>--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                        @endif--}}
                     </div>
                     <div class="panel-footer">
                         <a title="refresh" class="btn btn-default back" data-link="{{route('back')}}"><span
                                     class="fa fa-refresh"></span></a>
-                        <button class="btn btn-primary pull-right">Update</button>
+                        @if($task->submit_accept == 0)
+                            <button class="btn btn-primary pull-right">Update</button>
+                        @else
+                            <button class="btn btn-primary pull-right disabled">Already accepted task</button>
+                        @endif
                     </div>
                 </form>
                 {{--     Form end               --}}
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Task detail</h3>
+                    <h3 class="panel-title">Task Status</h3>
                 </div>
                 <div class="panel-body">
-                    {{--       If Submitted then show submit report                 --}}
-
-                    {{--        Accept / Reopen option            --}}
-
-
+                    @if($task->progress == 0)
+                        The Task has not been started yet.
+                    @elseif(($task->progress == 1) && ($task->submit == 0))
+                        The Task is in progress
+                    @elseif(($task->submit == 1) && ($task->submit_accept == 0))
+                        The Task is submitted.
+                        @if($task->submit_report)
+                            Here is the Submit Report:
+                            {!! $task->submit_report !!}
+                        @endif
+                        @if($task->submit_file)
+                            <a href="{{route('downloadTaskFile', ['tid' => $task->id])}}"
+                               title="Download" style="color: inherit;">
+                                <i class="glyphicon glyphicon-download-alt" style="font-size: 35px;"></i>
+                            </a>
+                        @endif
+                        <div class="float-right">
+                            <a href="{{route('task.accept2', ['tid' => $task->id])}}" class="btn btn-sm btn-success"
+                               onclick="return confirm('Are you sure ?')">Accept</a>
+                            <a href="{{route('task.reopen2', ['tid' => $task->id])}}" class="btn btn-sm btn-danger"
+                               onclick="return confirm('Are you sure ?')">Reopen</a>
+                        </div>
+                    @elseif($task->submit_accept == 1)
+                        Already Accepted Task.
+                        @if($task->submit_report)
+                            Here is the Submit Report:
+                            {!! $task->submit_report !!}
+                        @endif
+                        @if($task->submit_file)
+                            <a href="{{route('downloadTaskFile', ['tid' => $task->id])}}"
+                               title="Download" style="color: inherit;">
+                                <i class="glyphicon glyphicon-download-alt" style="font-size: 35px;"></i>
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

@@ -115,20 +115,20 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 col-xs-12 control-label">Select Branch</label>
-                                <div class="col-md-6 col-xs-12">
-                                    <select class="form-control" name="branch" required>
-                                        <option selected disabled hidden value="">Choose...</option>
-                                        @foreach($branches as $b)
-                                            <option value="{{$b->id}}" {{(old('branch')== $b->id)?'selected':'' }}>{{$b->title}}</option>
-                                        @endforeach
-                                    </select>
-                                    @if($errors->has('branch'))
-                                        <span class="help-block text-danger">{{$errors->first('branch')}}</span>
-                                    @endif
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label class="col-md-3 col-xs-12 control-label">Select Branch</label>--}}
+{{--                                <div class="col-md-6 col-xs-12">--}}
+{{--                                    <select class="form-control" name="branch" required>--}}
+{{--                                        <option selected disabled hidden value="">Choose...</option>--}}
+{{--                                        @foreach($branches as $b)--}}
+{{--                                            <option value="{{$b->id}}" {{(old('branch')== $b->id)?'selected':'' }}>{{$b->title}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    @if($errors->has('branch'))--}}
+{{--                                        <span class="help-block text-danger">{{$errors->first('branch')}}</span>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <label class="col-md-3 col-xs-12 control-label">Employee Type</label>
                                 <div class="col-md-6 col-xs-12">
@@ -177,6 +177,8 @@
                         </div>
                     </form>
                     {{--     Form end               --}}
+                    <p class="float-right mr-4">To check if your circular is functional or not, you can go to this <a
+                                href="{{route('show-notices')}}" target="_blank">this</a> link</p>
                 </div>
             </div>
         </div>
@@ -189,7 +191,7 @@
     {{--    <script type="text/javascript" src="{{asset('joli/js/demo_tables.js')}}"></script>--}}
     {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-datepicker.js')}}"></script>--}}
     {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-file-input.js')}}"></script>--}}
-{{--        <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-select.js')}}"></script>--}}
+    {{--        <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-select.js')}}"></script>--}}
     {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>--}}
     <!-- END THIS PAGE PLUGINS-->
     <script>

@@ -54,12 +54,12 @@ class NoticeController extends Controller
                 'job' => 'required',
                 'publish' => 'required',
                 'details' => 'required',
-                'branch' => 'required',
+//                'branch' => 'required',
                 'employeeType' => 'required',
             ]);
             $n = new Notice;
             $n->job_id = $request->job;
-            $n->branch_id = $request->branch;
+            $n->branch_id = Auth::user()->branch_id;
             $n->employeeType_id = $request->employeeType;
             $n->publish = $request->publish;
             $n->notice = $request->details;
@@ -153,12 +153,12 @@ class NoticeController extends Controller
                 'job' => 'required',
                 'publish' => 'required',
                 'details' => 'required',
-                'branch' => 'required',
+//                'branch' => 'required',
                 'employeeType' => 'required',
             ]);
             $n = Notice::find($nid);
             $n->job_id = $request->job;
-            $n->branch_id = $request->branch;
+//            $n->branch_id = $request->branch;
             $n->employeeType_id = $request->employeeType;
             $n->publish = $request->publish;
             $n->notice = $request->details;

@@ -11,6 +11,7 @@ class CreateOfficesTable extends Migration
     {
         Schema::create('offices', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('branch_id');
             $table->string('logo')->nullable();
             $table->string('logo_bg')->nullable();
             $table->string('footer')->nullable();

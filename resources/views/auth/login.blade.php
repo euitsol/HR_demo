@@ -18,10 +18,10 @@
 <body>
 
 <div class="login-container lightmode">
-    @php
-        $Office = Storage::disk('local')->get('office');
-        $OfficE = json_decode($Office);
-    @endphp
+{{--    @php--}}
+{{--        $Office = Storage::disk('local')->get('office');--}}
+{{--        $OfficE = json_decode($Office);--}}
+{{--    @endphp--}}
     <div class="login-box animated fadeInDown">
         <div class="row">
             @if(session('unsuccess'))
@@ -107,11 +107,11 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <label class="form-control-label text-secondary">Email</label>
-                        <input type="email" name="email"
-                               class="form-control {{$errors->has('email') ? 'is-invalid' : ''}}"
-                               value="{{old('email')}}" autofocus placeholder="@" required>
-                        @if($errors->has('email'))
-                            <span class="help-block text-danger">{{$errors->first('email')}}</span>
+                        <input type="email" name="Email"
+                               class="form-control {{$errors->has('Email') ? 'is-invalid' : ''}}"
+                               value="{{old('Email')}}" autofocus placeholder="@" required>
+                        @if($errors->has('Email'))
+                            <span class="help-block text-danger">{{$errors->first('Email')}}</span>
                         @endif
                     </div>
                 </div>

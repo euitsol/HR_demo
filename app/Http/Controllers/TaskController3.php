@@ -254,4 +254,51 @@ class TaskController3 extends Controller
     }
 
 
+
+    public function downloadTaskFile($tid)
+    {
+        if (Auth::user()->can('project_manager')) {
+            $a = Task::find($tid);
+            $ext = pathinfo($a->submit_file, PATHINFO_EXTENSION);
+            $s = addslashes($a->title);
+            $name = "$s." . $ext;
+            return response()->download($a->submit_file, $name);
+        } else {
+            abort(403);
+        }
+    }
+
+
+    public function taskReopen($tid)
+    {
+        if (Auth::user()->can('project_manager')) {
+            $t = Task::find($tid);
+            $t->submit = 0;
+            if ($t->submit_file != null) {
+                unlink($t->submit_file);
+                $t->submit_file = null;
+            }
+            $t->update();
+            Session::flash('success', "The Task has been reopened successfully.");
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
+    }
+
+
+    public function taskAccept($tid)
+    {
+        if (Auth::user()->can('project_manager')) {
+            $t = Task::find($tid);
+            $t->submit_accept = 1;
+            $t->update();
+            Session::flash('success', "The Task has been accepted successfully.");
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
+    }
+
+
 }

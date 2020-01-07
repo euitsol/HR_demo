@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call(PensionsTableSeeder::class);
          $this->call(LeavetypesTableSeeder::class);
          $this->call(BranchesTableSeeder::class);
-         $this->call(ProjectsTableSeeder::class);
+//         $this->call(ProjectsTableSeeder::class);
          $this->call(LeavesTableSeeder::class);
          $this->call(UserloansTableSeeder::class);
 //         $this->call(SalariesTableSeeder::class);
