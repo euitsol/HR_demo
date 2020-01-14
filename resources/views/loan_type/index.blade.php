@@ -1,5 +1,5 @@
 @extends('layouts.joli')
-@section('title', 'Loan Type')
+@section('title', 'Loan')
 @section('breadcrumb')
     @php
         $menuU = Storage::disk('local')->get('menu');
@@ -10,7 +10,7 @@
         <li class="active">{{$menu[38]->display_name}}</li>
     </ul>
 @endsection
-@section('pageTitle', 'Loan Type')
+@section('pageTitle', 'Loan')
 @section('content')
     <div class="row mb-5">
         @if(session('LoanTypeCreateSuccess'))
@@ -28,6 +28,37 @@
         @elseif(session('success'))
             <div class="alert alert-success text-center">
                 {{session('success')}}
+            </div>
+        @endif
+        @if(count($users) > 0)
+            <div class="col-lg-10 offset-lg-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Issue Loan</h3>
+                    </div>
+                    {{--     Form Start              --}}
+                    <form action="{{route('user.loan')}}" class="form-horizontal" method="post" id="user-id-form">
+                        @csrf
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-3 col-xs-12 control-label">Select Employee who has no due</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="input-group">
+                                        {{--                                        <span class="input-group-addon"><span class="fa fa-pencil"></span></span>--}}
+                                        <select class="form-control" name="userId" required id="user-id">
+                                            <option selected disabled hidden value="">Choose...</option>
+                                            @foreach($users as $u)
+                                                <option value="{{$u->id}}">{{$u->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer"></div>
+                    </form>
+                    {{--     Form end               --}}
+                </div>
             </div>
         @endif
         <div class="col-lg-6">
@@ -98,18 +129,56 @@
                 </div>
             </div>
         </div>
+        @if(count($loanUsers) > 0)
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">All User Loan</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Loan Type</th>
+                                <th>Due</th>
+                                <th>Salary Cut Per Month</th>
+                                <th>Months Lef</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($loanUsers as $i => $lu)
+                                <tr>
+                                    <th scope="row">{{$i + 1}}</th>
+                                    <td>{{$lu->name}}</td>
+                                    <td>{{$lu->loanType}}</td>
+                                    <td>{{$lu->due}}</td>
+                                    <td>{{$lu->pay_per_month}}</td>
+                                    <td>{{($lu->due * 1) / ($lu->pay_per_month * 1)}}</td>
+                                    <td>
+                                        <a href="{{route('user.loan.edit.2', ['lid' => $lu->id])}}"
+                                           class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 @section('script')
-    <!-- START THIS PAGE PLUGINS-->
-    {{--    <script type='text/javascript' src='{{asset('joli/js/plugins/icheck/icheck.min.js')}}'></script>--}}
-    {{--    <script type="text/javascript" src="{{asset('joli/js/demo_tables.js')}}"></script>--}}
-    {{--    <script type='text/javascript' src='{{asset('joli/js/plugins/icheck/icheck.min.js')}}'></script>--}}
-    {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-datepicker.js')}}"></script>--}}
-    {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-file-input.js')}}"></script>--}}
-    {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/bootstrap/bootstrap-select.js')}}"></script>--}}
-    {{--    <script type="text/javascript" src="{{asset('joli/js/plugins/tagsinput/jquery.tagsinput.min.js')}}"></script>--}}
-    <!-- END THIS PAGE PLUGINS-->
+    @if(count($users) > 0)
+        <script>
+            $(document).on('change', '#user-id', function () {
+                $('#user-id-form').submit();
+            });
+        </script>
+    @endif
 @endsection
 
 {{--@include('includes.bubbly.header')--}}
